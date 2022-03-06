@@ -1,59 +1,71 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   Push_swap.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: amoubare <amoubare@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/03/06 22:38:33 by amoubare          #+#    #+#             */
+/*   Updated: 2022/03/06 22:39:28 by amoubare         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "push_swap.h"
 
-pile sorttree(pile st)
+pile	sorttree(pile st)
 {
-    int top;
-    int middle;
-    int bottom;
+	int	top;
+	int	middle;
+	int	bottom;
 
-    top = st->i;
-    middle = st->next->i;
-    bottom = st->next->next->i;
-    if(top > middle && middle < bottom && top < bottom)
-        swap_stack(st, "sa\n");
-    else if(top > middle && middle > bottom)
-    {
-        rotate_stack(st, "ra\n");
-        swap_stack(st, "sa\n");
-    }
-    else if(top > middle && middle < bottom && top > bottom)
-        rotate_stack(st, "ra\n");
-    else if(top < middle && middle > bottom && top < bottom)
-    {
-        swap_stack(st, "sa\n");
-        rotate_stack(st, "ra\n");
-    }
-    else if(top < middle && middle > bottom && top > bottom)
-    {
-        rotate_stack(st, "ra\n");
-        rotate_stack(st, "ra\n");
-    }
-    return(st);
-}
-void    sortfour(pile *a, pile *b)
-{
-    *a = prep_four(*a);
-    push_to_stack(a, b, "pb\n");
-    *a = sorttree(*a);
-    push_to_stack(b, a, "pa\n");
-}
-void    sortfive(pile *a, pile *b)
-{
-    *a = prep_five(*a);
-    push_to_stack(a, b, "pb\n");
-    sortfour(a, b);
-    push_to_stack(b, a, "pa\n");
+	top = st->i;
+	middle = st->next->i;
+	bottom = st->next->next->i;
+	if (top > middle && middle < bottom && top < bottom)
+		swap_stack(st, "sa\n");
+	else if (top > middle && middle > bottom)
+	{
+		rotate_stack(st, "ra\n");
+		swap_stack(st, "sa\n");
+	}
+	else if (top > middle && middle < bottom && top > bottom)
+		rotate_stack(st, "ra\n");
+	else if (top < middle && middle > bottom && top < bottom)
+	{
+		swap_stack(st, "sa\n");
+		rotate_stack(st, "ra\n");
+	}
+	else if (top < middle && middle > bottom && top > bottom)
+	{
+		rotate_stack(st, "ra\n");
+		rotate_stack(st, "ra\n");
+	}
+	return (st);
 }
 
-
-int main(int argc, char **argv)
+void	sortfour(pile *a, pile *b)
 {
-    pile a = new_pile();
-    pile b = new_pile();
-    int i = argc;
-    int *p;
-    pile cp;
+	*a = prep_four(*a);
+	push_to_stack(a, b, "pb\n");
+	*a = sorttree(*a);
+	push_to_stack(b, a, "pa\n");
+}
+
+void	sortfive(pile *a, pile *b)
+{
+	*a = prep_five(*a);
+	push_to_stack(a, b, "pb\n");
+	sortfour(a, b);
+	push_to_stack(b, a, "pa\n");
+}
+
+int	main(int argc, char **argv)
+{
+	pile a = new_pile();
+	pile b = new_pile();
+	int i = argc;
+	int *p;
+	pile cp;
 
     p = (int *)malloc(24);
     
@@ -87,9 +99,9 @@ int main(int argc, char **argv)
         push_back_to_a(&a, &b, argc - 1, 4);
         pushmax(&a, &b, argc);
     }
-    // print_stack(a);
-    // printf("----------\n");
-    // print_stack(b);
+    print_stack(a);
+    printf("----------\n");
+    print_stack(b);
     return(0);
 }
 

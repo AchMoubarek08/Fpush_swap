@@ -1,3 +1,14 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   atoi.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: amoubare <amoubare@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/03/06 22:40:37 by amoubare          #+#    #+#             */
+/*   Updated: 2022/03/06 22:41:01 by amoubare         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "push_swap.h"
 
@@ -19,9 +30,9 @@ int	ft_atoi(const char *str)
 	}
 	else if (str[i] == '+')
 		i++;
-	while(str[i])
+	while (str[i])
 	{
-		if(str[i] >= '0' && str[i] <= '9')
+		if (str[i] >= '0' && str[i] <= '9')
 		{
 		k = k * 10 + str[i] - '0';
 		i++;
@@ -32,7 +43,7 @@ int	ft_atoi(const char *str)
 			exit(0);
 		}
 	}
-	if(k > (long)2147483647)
+	if (k > (long)2147483647)
 	{
 		ft_putstr("error\n");
 		exit(0);
